@@ -77,7 +77,7 @@ local Window = Rayfield:CreateWindow({
     DisableRayfieldPrompts = false,
     DisableBuildWarnings = false,
 
-    KeySystem = false,
+    KeySystem = true,
     KeySettings = {
         Title = "Evaware | Authentication",
         Subtitle = "Whitelist system",
