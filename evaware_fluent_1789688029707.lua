@@ -664,7 +664,7 @@ end
 
 VisualTab:AddToggle("SpectatorList", {
     Title = "Spectator List",
-    Default = false
+    Default = false,
     Callback = function(value)
         pcall(setSpectatorList, value)
     end,
@@ -795,7 +795,7 @@ end)
 
 FieryHornsToggleObject = VisualTab:AddToggle("FieryHorns", {
     Title = "Fiery Horns of the Netherworld",
-    Default = false
+    Default = false,
     Callback = function(value)
         if value == fieryHornsEnabled then return end
         setFieryHorns(value)
@@ -925,7 +925,7 @@ end)
 
 PoisonedHornsToggleObject = VisualTab:AddToggle("PoisonedHorns", {
     Title = "Poisoned Horns of the Toxic Wasteland",
-    Default = false
+    Default = false,
     Callback = function(value)
         if value == poisonedHornsEnabled then return end
         setPoisonedHorns(value)
@@ -1055,7 +1055,7 @@ end)
 
 FrozenHornsToggleObject = VisualTab:AddToggle("FrozenHorns", {
     Title = "Frozen Horns of the Frigid Planes",
-    Default = false
+    Default = false,
     Callback = function(value)
         if value == frozenHornsEnabled then return end
         setFrozenHorns(value)
@@ -1065,7 +1065,7 @@ end)
 
 VisualTab:AddToggle("HeadlessToggle", {
    Title = "Headless",
-   Default = false
+   Default = false,
    Callback = function(Value)
       headlessEnabled = Value
       applyToAllActiveRigs()
@@ -1074,7 +1074,7 @@ VisualTab:AddToggle("HeadlessToggle", {
  
 KorbloxRightToggleObject = VisualTab:AddToggle("KorbloxRightToggle", {
     Title = "Korblox right leg",
-    Default = false
+    Default = false,
     Callback = function(Value)
         if Value == korbloxRightEnabled then return end
         korbloxRightEnabled = Value
@@ -1084,7 +1084,7 @@ KorbloxRightToggleObject = VisualTab:AddToggle("KorbloxRightToggle", {
  
 KorbloxLeftToggleObject = VisualTab:AddToggle("KorbloxLeftToggle", {
     Title = "Korblox left leg",
-    Default = false
+    Default = false,
     Callback = function(Value)
         if Value == korbloxLeftEnabled then return end
         korbloxLeftEnabled = Value
@@ -1094,7 +1094,7 @@ KorbloxLeftToggleObject = VisualTab:AddToggle("KorbloxLeftToggle", {
 
 local FullbrightToggleObject = VisualTab:AddToggle("FullbrightToggle", {
    Title = "Fullbright",
-   Default = false
+   Default = false,
    Callback = function(Value)
       fullbrightEnabled = Value
       if Value then
@@ -1562,7 +1562,7 @@ end
 
 OptimizeToggleObject = VisualTab:AddToggle("OptimizerToggle", {
     Title = "Optimize game",
-    Default = false
+    Default = false,
     Callback = function(value)
         setOptimize(value)
     end,
@@ -1705,7 +1705,7 @@ end)
 
 VisualTab:AddToggle("HideHUDElementsToggle", {
     Title = "Hide HUD Elements",
-    Default = false
+    Default = false,
     Callback = function(Value)
         HiderActive = Value
         setVoteBlurBlock(Value)
@@ -1957,7 +1957,7 @@ end)
 
 ColaAnimToggleObject = VisualTab:AddToggle("ForceColaUse", {
     Title = "Fixed cola animation",
-    Default = false
+    Default = false,
     Callback = function(value)
         if value == colaAnimEnabled then return end
         setColaAnim(value)
@@ -2559,7 +2559,7 @@ VisualTab:AddButton({
 
 AvatarChangerToggleObject = VisualTab:AddToggle("AvatarChangerToggle", {
     Title = "Re-apply on respawn",
-    Default = false
+    Default = false,
     Callback = function(value)
         setAvatarChanger(value)
     end
@@ -2760,7 +2760,7 @@ jumpConnection = humanoid.Jumping:Connect(function(isActive)
 
     VisualTab:AddToggle("JumpCirclesToggle", {
         Title = "Jump Circles",
-        Default = false
+        Default = false,
         Callback = function(value)
             jumpCirclesEnabled = value
             if value then
@@ -2834,7 +2834,7 @@ local circleRadiusSlider = VisualTab:AddSlider("circleRadius", {
 
     VisualTab:AddToggle("JumpCircleLightToggle", {
         Title = "Circle Light",
-        Default = false
+        Default = false,
         Callback = function(value)
             circleLightEnabled = value
         end,
@@ -3040,7 +3040,7 @@ VisualTab:AddInput("skyboxAssetId", {
 
 VisualTab:AddToggle("CustomSkyboxToggle", {
     Title = "Enable Custom Skybox",
-    Default = false
+    Default = false,
     Callback = function(value)
         skyboxActive = value
         if skyboxActive then
@@ -3053,7 +3053,7 @@ VisualTab:AddToggle("CustomSkyboxToggle", {
 
 VisualTab:AddToggle("FancyFogToggle", {
     Title = "Fancy Fog",
-    Default = false
+    Default = false,
     Callback = function(value) setFog(value) end,
 })
 
@@ -3070,7 +3070,7 @@ VisualTab:AddColorpicker("fogColor", {
 
 VisualTab:AddToggle("ReapplyCustomSky", {
     Title = "Re-apply custom skybox on respawn",
-    Default = false
+    Default = false,
     Callback = function(value)
         reapplySkyOnRespawn = value
     end,
@@ -3078,7 +3078,7 @@ VisualTab:AddToggle("ReapplyCustomSky", {
 
 VisualTab:AddToggle("Reapplyfancyfog", {
     Title = "Re-apply fancy fog on respawn",
-    Default = false
+    Default = false,
     Callback = function(value)
         reapplyFogOnRespawn = value
     end,
@@ -4679,7 +4679,7 @@ end
 
 VisualTab:AddToggle("BroomWeldFixToggle", {
     Title = "Broom R6 weld fix",
-    Default = false
+    Default = false,
     Callback = function(Value)
         BroomFixEnabled = Value
         if Value then
@@ -5277,7 +5277,7 @@ VisualTab:AddColorpicker("recolor", {
 
 VisualTab:AddToggle("RecolorToggle", {
     Title = "Re-apply recolor on respawn",
-    Default = false
+    Default = false,
     Callback = function(Value)
         recolorEnabled = Value
         if recolorEnabled then
@@ -6932,7 +6932,7 @@ do
 
     VisualTab:AddToggle("GuitarChangerToggle", {
         Title = "Custom guitar",
-        Default = false
+    Default = false,
         Callback = function(value)
             guitarEnabled = value
             if value then
@@ -7480,7 +7480,7 @@ end)
 
 MainTab:AddToggle("ZeroCooldownsAll", {
     Title = "Tools cooldown remover",
-    Default = false
+    Default = false,
     Callback = function(value)
         cdEnabled = value
         if value then
@@ -7579,7 +7579,7 @@ MainTab:AddToggle("ZeroCooldownsAll", {
 
         MainTab:AddToggle("GrappleHookEnhance", {
             Title = "GrappleHook Enhance",
-            Default = false
+    Default = false,
             Callback = function(value)
                 grappleEnabled = value
                 if value then
@@ -7628,7 +7628,7 @@ MainTab:AddToggle("ZeroCooldownsAll", {
         local breacherOriginals = {}
         MainTab:AddToggle("BreacherEnhance", {
             Title = "Breacher Enhance",
-            Default = false
+    Default = false,
             Callback = function(value)
                 local data = getToolData("Breacher")
                 if not data then Fluent:Notify({ Title = "Breacher Enhance", Content = "Not found!", Duration = 3 }) return end
@@ -7659,7 +7659,7 @@ MainTab:AddToggle("ZeroCooldownsAll", {
         local defiOriginals = {}
         MainTab:AddToggle("DefibrillatorEnhance", {
             Title = "Defibrillator Enhance",
-            Default = false
+    Default = false,
             Callback = function(value)
                 local data = getToolData("Defibrillator")
                 if not data then Fluent:Notify({ Title = "Defibrillator Enhance", Content = "Not found!", Duration = 3 }) return end
@@ -8069,7 +8069,7 @@ end
 
 MainTab:AddToggle("AirStrafeEnabled", {
     Title = "Strafe speed",
-    Default = false
+    Default = false,
     Callback = function(value)
     AirStrafeSettings.Enabled = value
 
@@ -8385,7 +8385,7 @@ end
 
 MainTab:AddToggle("UnlockJumpToggle", {
     Title = "Unlock jump in all states",
-    Default = false
+    Default = false,
     Callback = function(value)
         if value then
             local lp = game:GetService("Players").LocalPlayer
@@ -8717,7 +8717,7 @@ MainTab:AddParagraph({ Title = "NCP Movement", Content = "" })
 
 MainTab:AddToggle("NCPMovement", {
     Title = "NCP Speed Movement",
-    Default = false
+    Default = false,
     Callback = function(value)
         setHardStrafe(value)
     end,
@@ -8745,7 +8745,7 @@ MainTab:AddSlider("ncpSpeedLimit", {
 
 MainTab:AddToggle("NCPStaticSpeed", {
     Title = "NCP Static Speed",
-    Default = false
+    Default = false,
     Callback = function(value)
         HardStrafeConfig.StaticSpeedEnabled = value
     end,
@@ -8815,7 +8815,7 @@ local function toggleYLock(state)
 end
 YLockToggle = MainTab:AddToggle("YLockToggle", {
     Title = "Y Lock Surf",
-    Default = false
+    Default = false,
     Callback = function(state)
         yLockEnabled = state
         toggleYLock(state)
@@ -9032,7 +9032,7 @@ end
 
 InvisWallToggleObject = MainTab:AddToggle("InvisWallRemover", {
     Title = "Invis Wall Remover",
-    Default = false
+    Default = false,
     Callback = function(value)
         if value == invisWallEnabled then return end
         setInvisWall(value)
@@ -9156,7 +9156,7 @@ end
 
 LegitToggleObject = MainTab:AddToggle("LegitBounce", {
     Title = "Legit Bounce",
-    Default = false
+    Default = false,
     Callback = function(value)
         setLegitBounce(value)
     end,
@@ -9285,7 +9285,7 @@ end
 
 ToggleObject = MainTab:AddToggle("AutoBounceToggle", {
     Title = "Auto Bounce",
-    Default = false
+    Default = false,
     Callback = function(value)
         if _settingToggle then return end
         if value == bounceEnabled then return end
@@ -9417,7 +9417,7 @@ MainTab:AddSlider("autoBouncePower", {
     ----------------------------------------------------------------
     local EasyBounceToggle = MainTab:AddToggle("EasyBounceToggle", {
         Title = "Easy Bounce",
-        Default = false
+    Default = false,
         Callback = function(value)
             toggleEasyBounce(value)
         end,
@@ -9567,7 +9567,7 @@ end
 
 EdgeToggleObject = MainTab:AddToggle("EdgeBoost", {
     Title = "Easy Edge Trimp",
-    Default = false
+    Default = false,
     Callback = function(value)
         if value == edgeBoostEnabled then return end
         setEdgeBoost(value)
@@ -9728,7 +9728,7 @@ end
 
 EmoteFlingToggleObject = MainTab:AddToggle("EmoteFlingToggle", {
     Title = "Emote Fling",
-    Default = false
+    Default = false,
     Callback = function(value)
         setEmoteFling(value)
     end,
@@ -10051,7 +10051,7 @@ end)
 
 MainTab:AddToggle("WallLaunch", {
     Title = "Wall Launch",
-    Default = false
+    Default = false,
     Callback = function(value)
         wallLaunchEnabled = value
 
@@ -10348,7 +10348,7 @@ end
 local SmoothMovementToggleObject
 SmoothMovementToggleObject = MainTab:AddToggle("SmoothMovementToggle", {
     Title = "Smart Turnbinds",
-    Default = false
+    Default = false,
     Callback = function(Value)
         smoothMovementEnabled = Value
 
@@ -10440,7 +10440,7 @@ end)
 
 LagswitchFFLAGToggleObject = MainTab:AddToggle("LagswitchFFLAGToggle", {
     Title = "FFlag for Lagswitch",
-    Default = false
+    Default = false,
     Callback = function(value)
         lagswitchEnabled = value
         if lagswitchEnabled then
@@ -10517,7 +10517,7 @@ end
  
 MainTab:AddToggle("BlockSpecialRound", {
     Title = "Special rounds effects blocker",
-    Default = false
+    Default = false,
     Callback = function(value)
         if value then
             if not specialBlockApplied then
@@ -10867,7 +10867,7 @@ LocalPlayer.CharacterAdded:Connect(onCharacterAdded)
 
 MainTab:AddToggle("AutoRevive", {
     Title = "Auto-revive while downed",
-    Default = false
+    Default = false,
     Callback = function(value)
         AutoReviveEnabled = value
 
@@ -11036,7 +11036,7 @@ end
 
 local AntiEmote = MainTab:AddToggle("AntiEmote", {
     Title = "Move while any emote - bypass",
-    Default = false
+    Default = false,
     Callback = function(Value)
         AntiEmoteEnabled = Value
 
@@ -11129,7 +11129,7 @@ end
 
 VehicleToggleObject = MainTab:AddToggle("VehicleSpeedToggle", {
     Title = "Change Vehicle Speed",
-    Default = false
+    Default = false,
     Callback = function(value)
         vehicleEnabled = value
         if value then
@@ -11353,7 +11353,7 @@ MainTab:AddDropdown("downedDashMode", {
 
 MainTab:AddToggle("DownedDashToggle", {
     Title = "Downed Dash",
-    Default = false
+    Default = false,
     Callback = function(value)
         setDownedSurf(value)
     end,
@@ -11459,7 +11459,7 @@ MainTab:AddSlider("cactusHitboxSize", {
 
 CactusToggleObject = MainTab:AddToggle("CactusHitboxToggle", {
     Title = "Expand Cactus Hitbox",
-    Default = false
+    Default = false,
     Callback = function(value)
         if value == cactusHitboxEnabled then return end
         setCactusHitbox(value)
@@ -11610,7 +11610,7 @@ MainTab:AddSlider("signsbollardsHitboxSize", {
 
 BollardToggleObject = MainTab:AddToggle("BollardHitboxToggle", {
     Title = "Expand Signs/Bollards Hitboxes",
-    Default = false
+    Default = false,
     Callback = function(value)
         if value == bollardHitboxEnabled then return end
         pcall(function() setBollardHitbox(value) end)
@@ -11714,7 +11714,7 @@ MainTab:AddDropdown("streetlampHitboxMode", {
 
 MainTab:AddToggle("StreetlampHitbox", {
     Title = "Create Streetlamp Hitbox",
-    Default = false
+    Default = false,
     Callback = function(value)
         setStreetlampHitbox(value)
     end,
@@ -11850,7 +11850,7 @@ end
 
 MainTab:AddToggle("NonmovableEmoteHopToggle", {
     Title = "Nonmovable emote hop",
-    Default = false
+    Default = false,
     Callback = function(value)
         movableEmoteEnabled = value
         patchAllEmotes(movableEmoteEnabled)
@@ -11920,7 +11920,7 @@ end
 
 MainTab:AddToggle("UnlockAllStatesToggle", {
     Title = "Unlock using items & emotes in every state",
-    Default = false
+    Default = false,
     Callback = function(value)
         unlockStatesEnabled = value
         patchAll(value)
@@ -11983,7 +11983,7 @@ end
 
 SpinFastToggleObject = MainTab:AddToggle("EmoteSpinToggle", {
     Title = "360 Spin",
-    Default = false
+    Default = false,
     Callback = function(value)
         setSpinFast(value)
     end,
@@ -12067,7 +12067,7 @@ end
 
 SpinFastToggleObject = MainTab:AddToggle("EmoteHopToggle360", {
     Title = "360 Emote Hop",
-    Default = false
+    Default = false,
     Callback = function(value)
         setSpinFast(value)
     end,
@@ -12192,7 +12192,7 @@ end
 
 FasterEmoteTurnToggleObject = MainTab:AddToggle("FasterEmoteTurn", {
     Title = "Faster Emote Turn",
-    Default = false
+    Default = false,
     Callback = function(value)
         if value == fasterEmoteTurnEnabled then return end
         setFasterEmoteTurn(value)
@@ -12333,7 +12333,7 @@ end
 
 LegacyEmoteTurnToggleObject = MainTab:AddToggle("LegacyEmoteTurn", {
     Title = "Legacy 60 FPS Animation Emote Turn",
-    Default = false
+    Default = false,
     Callback = function(value)
         if value == legacyEmoteTurnEnabled then return end
         setLegacyEmoteTurn(value)
@@ -12366,7 +12366,7 @@ end
 
 MainTab:AddToggle("EmoteShiftlock", {
     Title = "Unlock shiftlock while in emote",
-    Default = false
+    Default = false,
     Callback = function(value)
         emotingShiftlock = value
         setEmotingShiftlock(value)
@@ -12537,7 +12537,7 @@ local creatorClickConn = nil
 
 HitboxTab:AddToggle("HitboxCreatorToggle", {
     Title = "Hitbox Creator (LMB)",
-    Default = false
+    Default = false,
     Callback = function(val)
         hitboxCreatorEnabled = val
         if val then
@@ -12827,7 +12827,7 @@ end
 
     HitboxTab:AddToggle("HitboxSelector", {
         Title = "Hitbox Selector",
-        Default = false
+        Default = false,
         Callback = function(value)
             selectorEnabled = value
             if value then
@@ -13019,7 +13019,7 @@ pcall(function()
 
     HitboxTab:AddToggle("HBProxyEnabled", {
         Title = "Player Collision Proxy",
-        Default = false
+        Default = false,
         Callback     = function(v)
             enabled = v
             if v then enableProxies() else disableProxies() end
@@ -13280,7 +13280,7 @@ end
 
 HitboxTab:AddToggle("HBPicker", {
     Title = "Object Picker",
-    Default = false
+    Default = false,
     Callback     = function(v)
         if v then startPicker() else stopPicker() clearSelection() end
     end,
@@ -13288,7 +13288,7 @@ HitboxTab:AddToggle("HBPicker", {
 
 HitboxTab:AddToggle("HBCanCollide", {
     Title = "CanCollide",
-    Default = false
+    Default = false,
     Callback     = function(v)
         cfg.CanCollide = v
         applySettings()
@@ -13297,7 +13297,7 @@ HitboxTab:AddToggle("HBCanCollide", {
 
 HitboxTab:AddToggle("HBCanTouch", {
     Title = "CanTouch",
-    Default = false
+    Default = false,
     Callback     = function(v)
         cfg.CanTouch = v
         applySettings()
@@ -13306,7 +13306,7 @@ HitboxTab:AddToggle("HBCanTouch", {
 
 HitboxTab:AddToggle("HBCanQuery", {
     Title = "CanQuery",
-    Default = false
+    Default = false,
     Callback     = function(v)
         cfg.CanQuery = v
         applySettings()
@@ -13570,7 +13570,7 @@ end
 
 flyToggleObject = FlyTab:AddToggle("FlyTabToggle", {
     Title = "Fly",
-    Default = false
+    Default = false,
     Callback = function(value)
         if value == flyEnabled then return end
         setFly(value)
@@ -13590,7 +13590,7 @@ FlyTab:AddSlider("flySpeed", {
 
 noclipToggleObject = FlyTab:AddToggle("FlyTabNoclip", {
     Title = "Noclip",
-    Default = false
+    Default = false,
     Callback = function(value)
         if value == noclipEnabled then return end
         setNoclip(value)
