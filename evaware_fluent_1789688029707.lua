@@ -64,6 +64,40 @@ local Fluent = loadRemote("https://raw.githubusercontent.com/StyearX/Script/refs
 local SaveManager = loadRemote("https://raw.githubusercontent.com/StyearX/Script/refs/heads/main/Phantomwrym/Fluent-modded/SaveManager.lua", "Fluent/SaveManager.lua")
 local FBM = loadRemote("https://raw.githubusercontent.com/StyearX/Script/refs/heads/main/Phantomwrym/Fluent-modded/FloatingButtonManager.lua", "Fluent/FloatingButtonManager.lua")
 local InterfaceManager = loadRemote("https://raw.githubusercontent.com/StyearX/Script/refs/heads/main/Phantomwrym/Fluent-modded/InterfaceManager.lua", "Fluent/InterfaceManager.lua")
+
+local function addNumericInput(tab, name, config)
+    local callback = config.Callback or function() end
+    local default = config.Default
+    local minimum = tonumber(config.Min)
+    local maximum = tonumber(config.Max)
+    local control
+
+    config.Default = tostring(default)
+    config.Numeric = true
+    config.Finished = true
+    config.Placeholder = config.Placeholder or "Enter a number"
+    config.Callback = function(value)
+        local number = tonumber(value)
+        if not number then
+            return
+        end
+
+        if minimum and maximum then
+            number = math.clamp(number, minimum, maximum)
+        end
+
+        callback(number)
+
+        if control and tostring(number) ~= tostring(value) then
+            control:SetValue(tostring(number))
+        end
+    end
+
+    control = tab:AddInput(name, config)
+    config.Callback(default)
+    return control
+end
+
 local UIS = game:GetService("UserInputService")
 local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
@@ -2797,7 +2831,7 @@ jumpConnection = humanoid.Jumping:Connect(function(isActive)
         end,
     })
 
-local circleRadiusSlider = VisualTab:AddSlider("circleRadius", {
+local circleRadiusSlider = addNumericInput(VisualTab, "circleRadius", {
         Title = "Circle Radius",
         Min = 1, Max = 6.5,
         Increment = 0.1,
@@ -2808,7 +2842,7 @@ local circleRadiusSlider = VisualTab:AddSlider("circleRadius", {
         end,
     })
 
-    local circleSpeedSlider = VisualTab:AddSlider("circleSpeed", {
+    local circleSpeedSlider = addNumericInput(VisualTab, "circleSpeed", {
         Title = "Circle Speed",
         Min = 0.2, Max = 1,
         Increment = 0.1,
@@ -6945,7 +6979,7 @@ do
         end,
     })
 
-    VisualTab:AddSlider("guitarScale", {
+    addNumericInput(VisualTab, "guitarScale", {
         Title = "Guitar Scale",
         Min = 0.1, Max = 5,
         Increment = 0.1,
@@ -6961,7 +6995,7 @@ do
         end,
     })
 
-    VisualTab:AddSlider("offsetX", {
+    addNumericInput(VisualTab, "offsetX", {
         Title = "Offset X",
         Min = -5, Max = 5,
         Increment = 0.1,
@@ -6970,7 +7004,7 @@ do
         Callback = function(value) offsetX = value end,
     })
 
-    VisualTab:AddSlider("offsetY", {
+    addNumericInput(VisualTab, "offsetY", {
         Title = "Offset Y",
         Min = -5, Max = 5,
         Increment = 0.1,
@@ -6979,7 +7013,7 @@ do
         Callback = function(value) offsetY = value end,
     })
 
-    VisualTab:AddSlider("offsetZ", {
+    addNumericInput(VisualTab, "offsetZ", {
         Title = "Offset Z",
         Min = -5, Max = 5,
         Increment = 0.1,
@@ -8101,7 +8135,7 @@ MainTab:AddToggle("AirStrafeEnabled", {
 end,
 })
 
-MainTab:AddSlider("speed", {
+addNumericInput(MainTab, "speed", {
     Title = "Speed",
     Min = 1500, Max = 3000,
     Increment = 10,
@@ -8113,7 +8147,7 @@ MainTab:AddSlider("speed", {
     end,
 })
 
-MainTab:AddSlider("airStrafeAcceleration", {
+addNumericInput(MainTab, "airStrafeAcceleration", {
     Title = "Air Strafe Acceleration",
     Min = 182, Max = 5000,
     Increment = 10,
@@ -8125,7 +8159,7 @@ MainTab:AddSlider("airStrafeAcceleration", {
     end,
 })
 
-MainTab:AddSlider("airAcceleration", {
+addNumericInput(MainTab, "airAcceleration", {
     Title = "Air Acceleration",
     Min = 1, Max = 20,
     Increment = 0.5,
@@ -8137,7 +8171,7 @@ MainTab:AddSlider("airAcceleration", {
     end,
 })
 
-MainTab:AddSlider("jumpHeight", {
+addNumericInput(MainTab, "jumpHeight", {
     Title = "Jump Height",
     Min = 1, Max = 10,
     Increment = 0.1,
@@ -8149,7 +8183,7 @@ MainTab:AddSlider("jumpHeight", {
     end,
 })
 
-MainTab:AddSlider("jumpSpeedMultiplier", {
+addNumericInput(MainTab, "jumpSpeedMultiplier", {
     Title = "Jump Speed Multiplier",
     Min = 1, Max = 3,
     Increment = 0.1,
@@ -8161,7 +8195,7 @@ MainTab:AddSlider("jumpSpeedMultiplier", {
     end,
 })
 
-MainTab:AddSlider("sprintAcceleration", {
+addNumericInput(MainTab, "sprintAcceleration", {
     Title = "Sprint Acceleration",
     Min = 1, Max = 10,
     Increment = 0.1,
@@ -8173,7 +8207,7 @@ MainTab:AddSlider("sprintAcceleration", {
     end,
 })
 
-MainTab:AddSlider("runAcceleration", {
+addNumericInput(MainTab, "runAcceleration", {
     Title = "Run Acceleration",
     Min = 1, Max = 10,
     Increment = 0.1,
@@ -8185,7 +8219,7 @@ MainTab:AddSlider("runAcceleration", {
     end,
 })
 
-MainTab:AddSlider("friction", {
+addNumericInput(MainTab, "friction", {
     Title = "Friction",
     Min = 0, Max = 5,
     Increment = 0.1,
@@ -8737,7 +8771,7 @@ MainTab:AddToggle("NCPMovement", {
     end,
 })
 
-MainTab:AddSlider("ncpStrafeAcceleration", {
+addNumericInput(MainTab, "ncpStrafeAcceleration", {
     Title = "NCP Strafe Acceleration",
     Min = 100, Max = 5000,
     Increment = 50,
@@ -8748,7 +8782,7 @@ MainTab:AddSlider("ncpStrafeAcceleration", {
     end,
 })
 
-MainTab:AddSlider("ncpSpeedLimit", {
+addNumericInput(MainTab, "ncpSpeedLimit", {
     Title = "NCP Speed Limit",
     Min = 35, Max = 500,
     Increment = 5,
@@ -8767,7 +8801,7 @@ MainTab:AddToggle("NCPStaticSpeed", {
     end,
 })
 
-MainTab:AddSlider("ncpStaticSpeed", {
+addNumericInput(MainTab, "ncpStaticSpeed", {
     Title = "NCP Static Speed",
     Min = 40, Max = 130,
     Increment = 5,
@@ -9179,7 +9213,7 @@ LegitToggleObject = MainTab:AddToggle("LegitBounce", {
     end,
 })
 
-MainTab:AddSlider("legitBouncePower", {
+addNumericInput(MainTab, "legitBouncePower", {
     Title = "Legit Bounce Power",
     Min = 50, Max = 400,
     Increment = 10,
@@ -9311,7 +9345,7 @@ ToggleObject = MainTab:AddToggle("AutoBounceToggle", {
     end,
 })
 
-MainTab:AddSlider("autoBouncePower", {
+addNumericInput(MainTab, "autoBouncePower", {
     Title = "Auto Bounce Power",
     Min = 50, Max = 400,
     Increment = 10,
@@ -9593,7 +9627,7 @@ EdgeToggleObject = MainTab:AddToggle("EdgeBoost", {
     end,
 })
 
-MainTab:AddSlider("edgeBoostPower", {
+addNumericInput(MainTab, "edgeBoostPower", {
     Title = "Edge Boost Power",
     Min = 50, Max = 400,
     Increment = 10,
@@ -9754,7 +9788,7 @@ EmoteFlingToggleObject = MainTab:AddToggle("EmoteFlingToggle", {
     end,
 })
 
-MainTab:AddSlider("emoteFlingPower", {
+addNumericInput(MainTab, "emoteFlingPower", {
     Title = "Emote Fling Power",
     Min = 50, Max = 400,
     Increment = 10,
@@ -10241,7 +10275,7 @@ MainTab:AddToggle("WallLaunch", {
     end,
 })
 
-MainTab:AddSlider("wallLaunchPower", {
+addNumericInput(MainTab, "wallLaunchPower", {
     Title = "Wall Launch Power",
     Min =  20, Max = 200 ,
     Increment = 5,
@@ -11160,7 +11194,7 @@ VehicleToggleObject = MainTab:AddToggle("VehicleSpeedToggle", {
     end,
 })
 
-MainTab:AddSlider("vehicleMaxSpeed", {
+addNumericInput(MainTab, "vehicleMaxSpeed", {
     Title = "Vehicle Max Speed",
     Min = 45, Max = 500,
     Increment = 5,
@@ -11173,7 +11207,7 @@ MainTab:AddSlider("vehicleMaxSpeed", {
     end,
 })
 
-MainTab:AddSlider("vehicleTorque", {
+addNumericInput(MainTab, "vehicleTorque", {
     Title = "Vehicle Torque",
     Min = 80000, Max = 10000000,
     Increment = 10000,
@@ -11465,7 +11499,7 @@ local function setCactusHitbox(state)
     end
 end
 
-MainTab:AddSlider("cactusHitboxSize", {
+addNumericInput(MainTab, "cactusHitboxSize", {
     Title = "Cactus Hitbox Size",
     Min = 1, Max = 10,
     Increment = 0.5,
@@ -11615,7 +11649,7 @@ local function setBollardHitbox(state)
     end
 end
 
-MainTab:AddSlider("signsbollardsHitboxSize", {
+addNumericInput(MainTab, "signsbollardsHitboxSize", {
     Title = "Signs/Bollards Hitbox Size",
     Min = 1, Max = 10,
     Increment = 0.5,
@@ -11746,7 +11780,7 @@ MainTab:AddToggle("StreetlampHitbox", {
     end,
 })
 
-MainTab:AddSlider("streetlampHitboxSize", {
+addNumericInput(MainTab, "streetlampHitboxSize", {
     Title = "Streetlamp Hitbox Size",
     Min = 1, Max = 10,
     Increment = 0.5,
@@ -12016,7 +12050,7 @@ SpinFastToggleObject = MainTab:AddToggle("EmoteSpinToggle", {
     end,
 })
 
-MainTab:AddSlider("spinSpeed", {
+addNumericInput(MainTab, "spinSpeed", {
     Title = "Spin Speed",
     Min = 250, Max = 2000,
     Increment = 10,
@@ -12416,7 +12450,7 @@ local hitboxCreatorEnabled = false
 local showHitboxesEnabled = false
 local allCreatedHitboxes = {}
 
-HitboxTab:AddSlider("x", {
+addNumericInput(HitboxTab, "x", {
     Title = "X",
     Min = 5, Max = 100,
     Increment = 1,
@@ -12426,7 +12460,7 @@ HitboxTab:AddSlider("x", {
     Callback = function(val) hitboxSizeX = val end,
 })
 
-HitboxTab:AddSlider("y", {
+addNumericInput(HitboxTab, "y", {
     Title = "Y",
     Min = 5, Max = 100,
     Increment = 1,
@@ -12436,7 +12470,7 @@ HitboxTab:AddSlider("y", {
     Callback = function(val) hitboxSizeY = val end,
 })
 
-HitboxTab:AddSlider("z", {
+addNumericInput(HitboxTab, "z", {
     Title = "Z",
     Min = 5, Max = 100,
     Increment = 1,
@@ -12871,7 +12905,7 @@ end
         end,
     })
 
-HitboxTab:AddSlider("expandX", {
+addNumericInput(HitboxTab, "expandX", {
     Title = "Expand X",
     Min = 0, Max = 10,
     Increment = 0.1,
@@ -12883,7 +12917,7 @@ HitboxTab:AddSlider("expandX", {
     end,
 })
 
-HitboxTab:AddSlider("expandY", {
+addNumericInput(HitboxTab, "expandY", {
     Title = "Expand Y",
     Min = 0, Max = 10,
     Increment = 0.1,
@@ -12895,7 +12929,7 @@ HitboxTab:AddSlider("expandY", {
     end,
 })
 
-HitboxTab:AddSlider("expandZ", {
+addNumericInput(HitboxTab, "expandZ", {
     Title = "Expand Z",
     Min = 0, Max = 10,
     Increment = 0.1,
@@ -13060,7 +13094,7 @@ pcall(function()
         end,
     })
 
-    HitboxTab:AddSlider("proxySizeExpand", {
+    addNumericInput(HitboxTab, "proxySizeExpand", {
         Title = "Proxy Size Expand",
         Min = 0, Max = 5,
         Increment    = 0.1,
@@ -13612,7 +13646,7 @@ flyToggleObject = FlyTab:AddToggle("FlyTabToggle", {
     end,
 })
 
-FlyTab:AddSlider("flySpeed", {
+addNumericInput(FlyTab, "flySpeed", {
     Title = "Fly Speed",
     Min = 10, Max = 1000,
     Increment = 10,
