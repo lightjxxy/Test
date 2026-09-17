@@ -1,4 +1,4 @@
-local Rayfield = loadstring(game:HttpGet('https://gist.githubusercontent.com/shecollectedskulls/83a6848db38ea8811ace68161c1ddc1a/raw/602a6a3c45d45b7ad4caa00c6949218309fb0650/rayfield%2520without%2520notify'))()
+local Fluent = loadstring(game:HttpGet("https://raw.githubusercontent.com/StyearX/Script/refs/heads/main/Phantomwrym/Fluent-modded/Main.lua"))()
 local UIS = game:GetService("UserInputService")
 local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
