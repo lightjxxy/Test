@@ -2801,6 +2801,7 @@ local circleRadiusSlider = VisualTab:AddSlider("circleRadius", {
         Title = "Circle Radius",
         Min = 1, Max = 6.5,
         Increment = 0.1,
+        Rounding = 1,
         Default = 3.3,
         Callback = function(value)
             maxRadius = value
@@ -2811,6 +2812,7 @@ local circleRadiusSlider = VisualTab:AddSlider("circleRadius", {
         Title = "Circle Speed",
         Min = 0.2, Max = 1,
         Increment = 0.1,
+        Rounding = 1,
         Default = 0.3,
         Callback = function(value)
             circleSpeed = value
@@ -6947,6 +6949,7 @@ do
         Title = "Guitar Scale",
         Min = 0.1, Max = 5,
         Increment = 0.1,
+        Rounding = 1,
         Default = 1,
         Callback = function(value)
             guitarScale = value
@@ -6962,6 +6965,7 @@ do
         Title = "Offset X",
         Min = -5, Max = 5,
         Increment = 0.1,
+        Rounding = 1,
         Default = 0,
         Callback = function(value) offsetX = value end,
     })
@@ -6970,6 +6974,7 @@ do
         Title = "Offset Y",
         Min = -5, Max = 5,
         Increment = 0.1,
+        Rounding = 1,
         Default = 1,
         Callback = function(value) offsetY = value end,
     })
@@ -6978,6 +6983,7 @@ do
         Title = "Offset Z",
         Min = -5, Max = 5,
         Increment = 0.1,
+        Rounding = 1,
         Default = 0,
         Callback = function(value) offsetZ = value end,
     })
@@ -8099,6 +8105,7 @@ MainTab:AddSlider("speed", {
     Title = "Speed",
     Min = 1500, Max = 3000,
     Increment = 10,
+    Rounding = 0,
     Default = 1500,
     Callback = function(value)
         AirStrafeSettings.Speed = value
@@ -8110,6 +8117,7 @@ MainTab:AddSlider("airStrafeAcceleration", {
     Title = "Air Strafe Acceleration",
     Min = 182, Max = 5000,
     Increment = 10,
+    Rounding = 0,
     Default = 182,
     Callback = function(value)
         AirStrafeSettings.AirStrafeAcceleration = value
@@ -8121,6 +8129,7 @@ MainTab:AddSlider("airAcceleration", {
     Title = "Air Acceleration",
     Min = 1, Max = 20,
     Increment = 0.5,
+    Rounding = 1,
     Default = 1,
     Callback = function(value)
         AirStrafeSettings.AirAcceleration = value
@@ -8132,6 +8141,7 @@ MainTab:AddSlider("jumpHeight", {
     Title = "Jump Height",
     Min = 1, Max = 10,
     Increment = 0.1,
+    Rounding = 1,
     Default = 3,
     Callback = function(value)
         AirStrafeSettings.JumpHeight = value
@@ -8143,6 +8153,7 @@ MainTab:AddSlider("jumpSpeedMultiplier", {
     Title = "Jump Speed Multiplier",
     Min = 1, Max = 3,
     Increment = 0.1,
+    Rounding = 1,
     Default = 1.45,
     Callback = function(value)
         AirStrafeSettings.JumpSpeedMultiplier = value
@@ -8154,6 +8165,7 @@ MainTab:AddSlider("sprintAcceleration", {
     Title = "Sprint Acceleration",
     Min = 1, Max = 10,
     Increment = 0.1,
+    Rounding = 1,
     Default = 1,
     Callback = function(value)
         AirStrafeSettings.SprintAcceleration = value
@@ -8165,6 +8177,7 @@ MainTab:AddSlider("runAcceleration", {
     Title = "Run Acceleration",
     Min = 1, Max = 10,
     Increment = 0.1,
+    Rounding = 1,
     Default = 1,
     Callback = function(value)
         AirStrafeSettings.RunAccel = value
@@ -8176,6 +8189,7 @@ MainTab:AddSlider("friction", {
     Title = "Friction",
     Min = 0, Max = 5,
     Increment = 0.1,
+    Rounding = 1,
     Default = 5,
     Callback = function(value)
         AirStrafeSettings.Friction = value
@@ -8727,6 +8741,7 @@ MainTab:AddSlider("ncpStrafeAcceleration", {
     Title = "NCP Strafe Acceleration",
     Min = 100, Max = 5000,
     Increment = 50,
+    Rounding = 0,
     Default = 600,
     Callback = function(value)
         HardStrafeConfig.StrafeAcceleration = value
@@ -8737,6 +8752,7 @@ MainTab:AddSlider("ncpSpeedLimit", {
     Title = "NCP Speed Limit",
     Min = 35, Max = 500,
     Increment = 5,
+    Rounding = 0,
     Default = 110,
     Callback = function(value)
         HardStrafeConfig.StrafeSpeedCap = value * 90
@@ -8755,6 +8771,7 @@ MainTab:AddSlider("ncpStaticSpeed", {
     Title = "NCP Static Speed",
     Min = 40, Max = 130,
     Increment = 5,
+    Rounding = 0,
     Default = 65,
     Callback = function(value)
         HardStrafeConfig.StaticSpeed = value
@@ -9166,6 +9183,7 @@ MainTab:AddSlider("legitBouncePower", {
     Title = "Legit Bounce Power",
     Min = 50, Max = 400,
     Increment = 10,
+    Rounding = 0,
     Suffix = "",
     Default = legitBounceForce,
     Callback = function(value) legitBounceForce = value end,
@@ -9297,6 +9315,7 @@ MainTab:AddSlider("autoBouncePower", {
     Title = "Auto Bounce Power",
     Min = 50, Max = 400,
     Increment = 10,
+    Rounding = 0,
     Default = 100,
     Callback = function(value) bounceForce = value end,
 })
@@ -9578,6 +9597,7 @@ MainTab:AddSlider("edgeBoostPower", {
     Title = "Edge Boost Power",
     Min = 50, Max = 400,
     Increment = 10,
+    Rounding = 0,
     Suffix = "",
     Default = edgeBoostPower,
     Callback = function(value) edgeBoostPower = value end,
@@ -9738,6 +9758,7 @@ MainTab:AddSlider("emoteFlingPower", {
     Title = "Emote Fling Power",
     Min = 50, Max = 400,
     Increment = 10,
+    Rounding = 0,
     Suffix = "",
     Default = 120,
     Callback = function(value)
@@ -10224,6 +10245,7 @@ MainTab:AddSlider("wallLaunchPower", {
     Title = "Wall Launch Power",
     Min =  20, Max = 200 ,
     Increment = 5,
+    Rounding = 0,
     Default = 80,
     Callback = function(value)
         wallLaunchPower = value
@@ -11142,6 +11164,7 @@ MainTab:AddSlider("vehicleMaxSpeed", {
     Title = "Vehicle Max Speed",
     Min = 45, Max = 500,
     Increment = 5,
+    Rounding = 0,
     Suffix = " studs",
     Default = 45,
     Callback = function(value)
@@ -11154,6 +11177,7 @@ MainTab:AddSlider("vehicleTorque", {
     Title = "Vehicle Torque",
     Min = 80000, Max = 10000000,
     Increment = 10000,
+    Rounding = 0,
     Default = 80000,
     Callback = function(value)
         vehicleTorque = value
@@ -11445,6 +11469,7 @@ MainTab:AddSlider("cactusHitboxSize", {
     Title = "Cactus Hitbox Size",
     Min = 1, Max = 10,
     Increment = 0.5,
+    Rounding = 1,
     Suffix = "X/Z",
     Default = 1,
     Callback = function(val)
@@ -11594,6 +11619,7 @@ MainTab:AddSlider("signsbollardsHitboxSize", {
     Title = "Signs/Bollards Hitbox Size",
     Min = 1, Max = 10,
     Increment = 0.5,
+    Rounding = 1,
     Default = 1,
     Suffix = "X/Z",
     Callback = function(val)
@@ -11724,6 +11750,7 @@ MainTab:AddSlider("streetlampHitboxSize", {
     Title = "Streetlamp Hitbox Size",
     Min = 1, Max = 10,
     Increment = 0.5,
+    Rounding = 1,
     Default = 1,
     Suffix = "X/Z",
     Callback = function(val)
@@ -11993,6 +12020,7 @@ MainTab:AddSlider("spinSpeed", {
     Title = "Spin Speed",
     Min = 250, Max = 2000,
     Increment = 10,
+    Rounding = 0,
     Suffix = "",
     Default = 250,
     Callback = function(value)
@@ -12392,6 +12420,7 @@ HitboxTab:AddSlider("x", {
     Title = "X",
     Min = 5, Max = 100,
     Increment = 1,
+    Rounding = 0,
     Suffix = "",
     Default = 5,
     Callback = function(val) hitboxSizeX = val end,
@@ -12401,6 +12430,7 @@ HitboxTab:AddSlider("y", {
     Title = "Y",
     Min = 5, Max = 100,
     Increment = 1,
+    Rounding = 0,
     Suffix = "",
     Default = 5,
     Callback = function(val) hitboxSizeY = val end,
@@ -12410,6 +12440,7 @@ HitboxTab:AddSlider("z", {
     Title = "Z",
     Min = 5, Max = 100,
     Increment = 1,
+    Rounding = 0,
     Suffix = "",
     Default = 5,
     Callback = function(val) hitboxSizeZ = val end,
@@ -12844,6 +12875,7 @@ HitboxTab:AddSlider("expandX", {
     Title = "Expand X",
     Min = 0, Max = 10,
     Increment = 0.1,
+    Rounding = 1,
     Default = 0,
     Callback = function(val)
         expandX = val
@@ -12855,6 +12887,7 @@ HitboxTab:AddSlider("expandY", {
     Title = "Expand Y",
     Min = 0, Max = 10,
     Increment = 0.1,
+    Rounding = 1,
     Default = 0,
     Callback = function(val)
         expandY = val
@@ -12866,6 +12899,7 @@ HitboxTab:AddSlider("expandZ", {
     Title = "Expand Z",
     Min = 0, Max = 10,
     Increment = 0.1,
+    Rounding = 1,
     Default = 0,
     Callback = function(val)
         expandZ = val
@@ -13030,6 +13064,7 @@ pcall(function()
         Title = "Proxy Size Expand",
         Min = 0, Max = 5,
         Increment    = 0.1,
+        Rounding     = 1,
         Suffix       = "studs",
         Default = 0,
         Callback     = function(val)
@@ -13581,6 +13616,7 @@ FlyTab:AddSlider("flySpeed", {
     Title = "Fly Speed",
     Min = 10, Max = 1000,
     Increment = 10,
+    Rounding = 0,
     Suffix = "",
     Default = 300,
     Callback = function(value)
