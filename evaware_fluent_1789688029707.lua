@@ -448,9 +448,13 @@ local farmTeleportPosition = Vector3.new(0, 10000, 0)
 local safePlatformEnabled = false
 local ticketFarmEnabled = false
 local antiAfkEnabled = false
+local autoReviveEnabled = false
 local farmPlatform = nil
 local farmRenderConnection = nil
 local farmAntiAfkConnection = nil
+local farmAutoReviveConnection = nil
+local farmGameUISetType = nil
+local farmSetPlayerMode = nil
 
 local function ensureFarmPlatform()
     if farmPlatform and farmPlatform.Parent then
@@ -558,19 +562,71 @@ local function setAntiAfk(state)
     end
 end
 
+local function getFarmEvent(eventName)
+    local ok, event = pcall(function()
+        local events = ReplicatedStorage:WaitForChild("Events", 5)
+        if not events then
+            return nil
+        end
+        return events:WaitForChild(eventName, 5)
+    end)
+
+    if ok and event then
+        return event
+    end
+end
+
+local function getLocalTag()
+    local character = player.Character
+    return character and character:GetAttribute("Tag")
+end
+
+local function setAutoRevive(state)
+    autoReviveEnabled = state
+
+    if not state then
+        if farmAutoReviveConnection then
+            farmAutoReviveConnection:Disconnect()
+            farmAutoReviveConnection = nil
+        end
+        return
+    end
+
+    if farmAutoReviveConnection then
+        return
+    end
+
+    farmGameUISetType = getFarmEvent("GameUISetType")
+    farmSetPlayerMode = getFarmEvent("SetPlayerMode")
+    if not farmGameUISetType or not farmSetPlayerMode then
+        autoReviveEnabled = false
+        return
+    end
+
+    farmAutoReviveConnection = farmGameUISetType.OnClientEvent:Connect(function(feedType, subType, data)
+        if not autoReviveEnabled then
+            return
+        end
+        if feedType ~= "DeathFeed" or subType ~= "Death" or type(data) ~= "table" then
+            return
+        end
+
+        local myTag = getLocalTag()
+        if myTag ~= nil and data.Recipient == myTag and data.Downed ~= nil then
+            farmSetPlayerMode:FireServer(data.Downed)
+        end
+    end)
+end
+
 local function farmCleanup()
     safePlatformEnabled = false
     ticketFarmEnabled = false
     setAntiAfk(false)
+    setAutoRevive(false)
     refreshFarmLoop()
 end
 
 _G.EvawareFarmCleanup = farmCleanup
-
-FarmTab:AddParagraph({
-    Title = "Farm controls",
-    Content = "Platform and ticket farming are controlled from this tab. No separate movable UI is created.",
-})
 
 FarmTab:AddToggle("SafePlatformFarm", {
     Title = "Safe Platform",
@@ -595,6 +651,25 @@ FarmTab:AddToggle("FarmAntiAFK", {
     Default = false,
     Callback = function(value)
         setAntiAfk(value)
+    end,
+})
+
+FarmTab:AddToggle("FarmAutoRevive", {
+    Title = "Auto Revive",
+    Default = false,
+    Callback = function(value)
+        setAutoRevive(value)
+    end,
+})
+
+FarmTab:AddButton({
+    Title = "Force Revive",
+    Callback = function()
+        local setPlayerMode = farmSetPlayerMode or getFarmEvent("SetPlayerMode")
+        if setPlayerMode then
+            farmSetPlayerMode = setPlayerMode
+            setPlayerMode:FireServer(true)
+        end
     end,
 })
 
