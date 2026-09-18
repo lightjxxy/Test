@@ -4601,7 +4601,7 @@ for i = 1, 12 do
     emoteInputs[i].current = VisualTab:AddInput("CurrentEmote", {
         Title = "Current emote " .. i,
         Placeholder = "Current emote",
-        ClearOnFocus = false.. i,
+        ClearOnFocus = false,
         Callback = function(Text) emoteSlots[i].current = Text end
     })
 end
@@ -4610,7 +4610,7 @@ for i = 1, 12 do
     emoteInputs[i].select = VisualTab:AddInput("SelectEmote", {
         Title = "Select emote " .. i,
         Placeholder = "Select emote",
-        ClearOnFocus = false.. i,
+        ClearOnFocus = false,
         Callback = function(Text) emoteSlots[i].select = Text end
     })
 end
@@ -5358,11 +5358,11 @@ for i = 1, 2 do
 end
 
 for i = 1, 2 do
-    cosmeticInputs[i].current = VisualTab:AddInput("CurrentCosmetic", { Title = "Current cosmetic " .. i, Placeholder = "Current cosmetic", ClearOnFocus = false.. i, Callback = function(Text) cosmeticSlots[i].current = Text end })
+    cosmeticInputs[i].current = VisualTab:AddInput("CurrentCosmetic", { Title = "Current cosmetic " .. i, Placeholder = "Current cosmetic", ClearOnFocus = false, Callback = function(Text) cosmeticSlots[i].current = Text end })
 end
 
 for i = 1, 2 do
-    cosmeticInputs[i].select = VisualTab:AddInput("SelectCosmetic", { Title = "Select cosmetic " .. i, Placeholder = "Select cosmetic", ClearOnFocus = false.. i, Callback = function(Text) cosmeticSlots[i].select = Text end })
+    cosmeticInputs[i].select = VisualTab:AddInput("SelectCosmetic", { Title = "Select cosmetic " .. i, Placeholder = "Select cosmetic", ClearOnFocus = false, Callback = function(Text) cosmeticSlots[i].select = Text end })
 end
 
 local savedCosmeticData = savedCosmeticData or {}
