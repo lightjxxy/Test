@@ -100,6 +100,7 @@ end
 
 local UIS = game:GetService("UserInputService")
 local Players = game:GetService("Players")
+local VirtualUser = game:GetService("VirtualUser")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local CollectionService = game:GetService("CollectionService")
 local RunService = game:GetService("RunService")
@@ -134,6 +135,7 @@ local Window = Fluent:CreateWindow({
 
 
 
+local FarmTab = Window:AddTab({ Title = "Farm", Icon = "leaf" })
 local MainTab = Window:AddTab({ Title = "Main", Icon = "swords" })
 local VisualTab = Window:AddTab({ Title = "Visual", Icon = "eye-off" })
 local HitboxTab = Window:AddTab({ Title = "Hitbox creator", Icon = "box" })
@@ -433,6 +435,168 @@ _G.HKCharConn = player.CharacterAdded:Connect(function(character)
     applyToCharacter(character)
     task.defer(applyToAllActiveRigs)
 end)
+
+-- FARM TAB
+-- Adapted from the uploaded platform and ticket-farm scripts.  Their
+-- standalone draggable ScreenGuis are intentionally omitted; all controls
+-- are kept inside this hub.
+if _G.EvawareFarmCleanup then
+    pcall(_G.EvawareFarmCleanup)
+end
+
+local farmTeleportPosition = Vector3.new(0, 10000, 0)
+local safePlatformEnabled = false
+local ticketFarmEnabled = false
+local antiAfkEnabled = false
+local farmPlatform = nil
+local farmRenderConnection = nil
+local farmAntiAfkConnection = nil
+
+local function ensureFarmPlatform()
+    if farmPlatform and farmPlatform.Parent then
+        return
+    end
+
+    farmPlatform = Instance.new("Part")
+    farmPlatform.Name = "EvawareFarmPlatform"
+    farmPlatform.Size = Vector3.new(50, 2, 50)
+    farmPlatform.Position = farmTeleportPosition
+    farmPlatform.Anchored = true
+    farmPlatform.CanCollide = true
+    farmPlatform.Transparency = 0.25
+    farmPlatform.Color = Color3.fromRGB(80, 170, 255)
+    farmPlatform.Parent = workspace
+end
+
+local function destroyFarmPlatform()
+    if farmPlatform then
+        farmPlatform:Destroy()
+        farmPlatform = nil
+    end
+end
+
+local function getFarmRoot()
+    local character = player.Character
+    return character and character:FindFirstChild("HumanoidRootPart")
+end
+
+local function getFirstTicket()
+    local effects = workspace:FindFirstChild("Effects")
+    local ticketFolder = effects and effects:FindFirstChild("Tickets")
+    if not ticketFolder then
+        return nil
+    end
+
+    for _, ticket in ipairs(ticketFolder:GetChildren()) do
+        if ticket:IsA("Model") or ticket:IsA("BasePart") then
+            return ticket
+        end
+    end
+
+    return nil
+end
+
+local function refreshFarmLoop()
+    local shouldRun = safePlatformEnabled or ticketFarmEnabled
+
+    if not shouldRun then
+        if farmRenderConnection then
+            farmRenderConnection:Disconnect()
+            farmRenderConnection = nil
+        end
+        destroyFarmPlatform()
+        return
+    end
+
+    ensureFarmPlatform()
+    if farmRenderConnection then
+        return
+    end
+
+    farmRenderConnection = RunService.RenderStepped:Connect(function()
+        local root = getFarmRoot()
+        if not root then
+            return
+        end
+
+        if ticketFarmEnabled then
+            local ticket = getFirstTicket()
+            if ticket then
+                local ok, ticketPivot = pcall(function()
+                    return ticket:GetPivot()
+                end)
+                if ok and ticketPivot then
+                    root.CFrame = ticketPivot
+                    return
+                end
+            end
+        end
+
+        if safePlatformEnabled or ticketFarmEnabled then
+            local platformPosition = farmTeleportPosition + Vector3.new(0, 5, 0)
+            if (root.Position - platformPosition).Magnitude > 10 then
+                root.CFrame = CFrame.new(platformPosition)
+            end
+        end
+    end)
+end
+
+local function setAntiAfk(state)
+    antiAfkEnabled = state
+
+    if state and not farmAntiAfkConnection then
+        farmAntiAfkConnection = player.Idled:Connect(function()
+            if not antiAfkEnabled then
+                return
+            end
+            VirtualUser:CaptureController()
+            VirtualUser:ClickButton2(Vector2.new())
+        end)
+    elseif not state and farmAntiAfkConnection then
+        farmAntiAfkConnection:Disconnect()
+        farmAntiAfkConnection = nil
+    end
+end
+
+local function farmCleanup()
+    safePlatformEnabled = false
+    ticketFarmEnabled = false
+    setAntiAfk(false)
+    refreshFarmLoop()
+end
+
+_G.EvawareFarmCleanup = farmCleanup
+
+FarmTab:AddParagraph({
+    Title = "Farm controls",
+    Content = "Platform and ticket farming are controlled from this tab. No separate movable UI is created.",
+})
+
+FarmTab:AddToggle("SafePlatformFarm", {
+    Title = "Safe Platform",
+    Default = false,
+    Callback = function(value)
+        safePlatformEnabled = value
+        refreshFarmLoop()
+    end,
+})
+
+FarmTab:AddToggle("AutoTicketFarm", {
+    Title = "Auto Ticket Farm",
+    Default = false,
+    Callback = function(value)
+        ticketFarmEnabled = value
+        refreshFarmLoop()
+    end,
+})
+
+FarmTab:AddToggle("FarmAntiAFK", {
+    Title = "Anti-AFK",
+    Default = false,
+    Callback = function(value)
+        setAntiAfk(value)
+    end,
+})
 
 -- VISUAL TAB
 
