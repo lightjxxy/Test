@@ -10290,6 +10290,7 @@ MainTab:AddParagraph({ Title = "Keybinds", Content = "" })
 
 MainTab:AddKeybind("playTAS", {
     Title = "Y Lock Surf Keybind",
+    Default = "None",
     CurrentKeybind = "Nonе",
     HoldToInteract = false,
     Callback = function()
@@ -10300,6 +10301,7 @@ MainTab:AddKeybind("playTAS", {
 
 MainTab:AddKeybind("playTAS", {
     Title = "Invis Wall Remover Keybind",
+    Default = "None",
     CurrentKeybind = "Nonе",
     HoldToInteract = false,
     Callback = function()
@@ -10309,6 +10311,7 @@ MainTab:AddKeybind("playTAS", {
 
 MainTab:AddKeybind("playTAS", {
     Title = "Legit Bounce Keybind",
+    Default = "None",
     CurrentKeybind = "Nonе",
     HoldToInteract = false,
     Callback = function() setLegitBounce(not legitBounceEnabled) end,
@@ -10316,6 +10319,7 @@ MainTab:AddKeybind("playTAS", {
 
 MainTab:AddKeybind("playTAS", {
     Title = "Auto Bounce Keybind",
+    Default = "None",
     CurrentKeybind = "Nonе",
     HoldToInteract = false,
     Callback = function()
@@ -10327,6 +10331,7 @@ MainTab:AddKeybind("playTAS", {
 
     MainTab:AddKeybind("playTAS", {
         Title = "Easy Bounce Keybind",
+        Default = "None",
         CurrentKeybind = "None",
         HoldToInteract = false,
         Callback = function()
@@ -10342,6 +10347,7 @@ MainTab:AddKeybind("playTAS", {
 
 MainTab:AddKeybind("playTAS", {
     Title = "Easy Edge Trimp Keybind",
+    Default = "None",
     CurrentKeybind = "Nonе",
     HoldToInteract = false,
     Callback = function() setEdgeBoost(not edgeBoostEnabled) end,
@@ -10349,6 +10355,7 @@ MainTab:AddKeybind("playTAS", {
 
 MainTab:AddKeybind("playTAS", {
     Title = "Emote Fling Keybind",
+    Default = "None",
     CurrentKeybind = "Nonе",
     HoldToInteract = false,
     Callback = function()
@@ -10358,6 +10365,7 @@ MainTab:AddKeybind("playTAS", {
 
 MainTab:AddKeybind("playTAS", {
     Title = "Wall Launch Keybind",
+    Default = "None",
     CurrentKeybind = "Nonе",
     HoldToInteract = false,
     Callback = function()
@@ -10470,6 +10478,7 @@ SmoothMovementToggleObject = MainTab:AddToggle("SmoothMovementToggle", {
 
 MainTab:AddKeybind("playTAS", {
     Title = "Turnbind Keybind",
+    Default = "None",
     CurrentKeybind = "Nonе",
     HoldToInteract = false,
     Callback = function()
@@ -12064,6 +12073,7 @@ addNumericInput(MainTab, "spinSpeed", {
 
 MainTab:AddKeybind("playTAS", {
     Title = "360 Spin Keybind",
+    Default = "None",
     CurrentKeybind = "Nonе",
     HoldToInteract = false,
     Callback = function()
@@ -12137,6 +12147,7 @@ SpinFastToggleObject = MainTab:AddToggle("EmoteHopToggle360", {
 
 MainTab:AddKeybind("playTAS", {
     Title = "360 Emote Hop Keybind",
+    Default = "None",
     CurrentKeybind = "Nonе",
     HoldToInteract = false,
     Callback = function()
@@ -12673,6 +12684,7 @@ HitboxTab:AddButton({
 
 HitboxTab:AddKeybind("playTAS", {
     Title = "Hitbox Creator Keybind",
+    Default = "None",
     CurrentKeybind = "Nonе",
     HoldToInteract = false,
     Callback = function()
@@ -12683,6 +12695,7 @@ HitboxTab:AddKeybind("playTAS", {
 
 HitboxTab:AddKeybind("playTAS", {
     Title = "Remove Last Hitbox Keybind",
+    Default = "None",
     CurrentKeybind = "Nonе",
     HoldToInteract = false,
     Callback = function()
@@ -12698,6 +12711,7 @@ HitboxTab:AddKeybind("playTAS", {
 
 HitboxTab:AddKeybind("playTAS", {
     Title = "Remove All Hitboxes Keybind",
+    Default = "None",
     CurrentKeybind = "Nonе",
     HoldToInteract = false,
     Callback = function()
@@ -13669,6 +13683,7 @@ noclipToggleObject = FlyTab:AddToggle("FlyTabNoclip", {
 
 FlyTab:AddKeybind("playTAS", {
     Title = "Fly Keybind",
+    Default = "None",
     CurrentKeybind = "Nonе",
     HoldToInteract = false,
     Callback = function()
@@ -13678,6 +13693,7 @@ FlyTab:AddKeybind("playTAS", {
 
 FlyTab:AddKeybind("playTAS", {
     Title = "Noclip Keybind",
+    Default = "None",
     CurrentKeybind = "Nonе",
     HoldToInteract = false,
     Callback = function()
@@ -13791,6 +13807,7 @@ TasTab:AddButton({
 
 TasTab:AddKeybind("playTAS", {
     Title = "Start Recording",
+    Default = "None",
     CurrentKeybind = "",
     HoldToInteract = false,
     Callback = StartRecord,
@@ -13798,6 +13815,7 @@ TasTab:AddKeybind("playTAS", {
 
 TasTab:AddKeybind("playTAS", {
     Title = "Stop Recording",
+    Default = "None",
     CurrentKeybind = "",
     HoldToInteract = false,
     Callback = StopRecord,
@@ -13805,6 +13823,7 @@ TasTab:AddKeybind("playTAS", {
 
 TasTab:AddKeybind("playTAS", {
     Title = "Play",
+    Default = "None",
     CurrentKeybind = "",
     HoldToInteract = false,
     Callback = PlayTAS,
